@@ -1,16 +1,21 @@
 package com.dhruv.dependencyinjectiondemo.controllers;
 
 import com.dhruv.dependencyinjectiondemo.services.GreetingService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
 
+@Controller
 public class SetterInjectionController {
 
     private GreetingService greetingService;
 
-    String sayHello() {
+    public String sayHello() {
         return greetingService.sayGreeting();
     }
 
-    public void setGreetingService(GreetingService greetingService) {
+    @Autowired
+    public void setGreetingService(@Qualifier("setterGreetingService") GreetingService greetingService) {
         this.greetingService = greetingService;
     }
 }
